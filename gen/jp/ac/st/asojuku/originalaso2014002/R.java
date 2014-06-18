@@ -1079,6 +1079,7 @@ containing a value of this type.
         public static final int ic_launcher=0x7f020057;
     }
     public static final class id {
+        public static final int LvHITOKOTO=0x7f050044;
         public static final int action_bar=0x7f05001c;
         public static final int action_bar_activity_content=0x7f050015;
         public static final int action_bar_container=0x7f05001b;
@@ -1116,7 +1117,6 @@ containing a value of this type.
         public static final int imageView1=0x7f050043;
         public static final int linearLayout1=0x7f05003c;
         public static final int listMode=0x7f050001;
-        public static final int listView1=0x7f050044;
         public static final int list_item=0x7f050029;
         public static final int middle=0x7f050012;
         public static final int never=0x7f050009;
