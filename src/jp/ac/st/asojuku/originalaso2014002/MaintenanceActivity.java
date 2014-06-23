@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Toast;
 
 
 public class MaintenanceActivity extends Activity implements View.OnClickListener, AdapterView.OnItemClickListener{
@@ -51,6 +52,17 @@ public class MaintenanceActivity extends Activity implements View.OnClickListene
 	@Override
 	public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 		// TODO 自動生成されたメソッド・スタブ
+		if(this.selectedID!=-1){
+			parent.getChildAt(this.lastPosition).setBackgroundColor(0);
+		}
+
+		view.setBackgroundColor(android.graphics.Color.LTGRAY);
+
+		SQLiteCursor cursor = (SQLiteCursor)parent.getItemAtPosition(position);
+
+		this.selectedID = cursor.getInt(cursor.getColumnIndex("_id"));
+
+		this.lastPosition = position;
 
 	}
 
@@ -87,15 +99,35 @@ public class MaintenanceActivity extends Activity implements View.OnClickListene
 		Intent intent = null;
 		switch(v.getId()){ //どのボタンが押されたか判定
 		case R.id.btnm: //ボタンbtnOKが押された
+			finish();
+		case R.id.btnt:
+			if(this.selectedID != -1){
+				this.deleteFromHitokoto(this.selectedID);
+				ListView lstHitokoto = (ListView)findViewById(R.id.LvHITOKOTO);
 
-			intent = new Intent(MaintenanceActivity.this, MainActivity.class);
+				this.setDBValuetoList(lstHitokoto);
 
-			startActivity(intent);
+				this.selectedID = -1;
+				this.lastPosition = -1;
+			} else {
+				Toast.makeText(MaintenanceActivity.this, "削除する行を選んでください", Toast.LENGTH_SHORT).show();
+			}
 			break;
 		}
+	}
 
+	private void deleteFromHitokoto(int id){
 
+		if(sdb == null){
+			helper = new MySQLiteOpenHelper(getApplicationContext());
+		}
+		try{
+			sdb = helper.getWritableDatabase();
+		} catch(SQLiteException e){
+			Log.e("ERROR", e.toString());
+		}
 
+		this.helper.deleteHitokoto(sdb, id);
 	}
 
 }
