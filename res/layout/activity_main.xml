@@ -32,7 +32,9 @@
             android:layout_width="match_parent"
             android:layout_height="30dp"
             android:gravity="center"
-            android:text="ひとことを登録" />
+            android:text="ひとことを登録"
+            android:textColor="#FF00"
+            android:textSize="20sp" />
 
         <EditText
             android:id="@+id/edthito"
@@ -48,14 +50,13 @@
             <Button
                 android:id="@+id/btnm"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.40"
+                android:layout_height="match_parent"
                 android:text="メンテナンス" />
 
             <Button
                 android:id="@+id/btnt"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="74dp"
                 android:layout_weight="0.58"
                 android:text="登録" />
         </LinearLayout>
@@ -64,7 +65,9 @@
             android:id="@+id/btnc"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_weight="0.02"
             android:text="ひとことをチェック" />
+
     </LinearLayout>
 
 </RelativeLayout>
